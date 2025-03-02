@@ -46,13 +46,14 @@ public partial class WebServer {
 
         (_thread = new Thread(_ => {
             int port = _server.Config.Httpd.Port;
+            string host = _server.Config.Httpd.Host;
 
             if (_listener == null) {
                 Logger.Info($"Internal webserver starting on port {port}");
             }
 
             try {
-                (_listener = new HttpListener { Prefixes = { $"http://*:{port}/" } }).Start();
+                (_listener = new HttpListener { Prefixes = { $"http://{host}:{port}/" } }).Start();
             } catch (Exception e) {
                 Logger.Error("Internal webserver has failed to start");
                 if (e is HttpListenerException { ErrorCode: 5 }) {
