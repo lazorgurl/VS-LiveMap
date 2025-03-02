@@ -49,13 +49,13 @@ public partial class WebServer {
             string host = _server.Config.Httpd.Host;
 
             if (_listener == null) {
-                Logger.Info($"Internal webserver starting on port {port}");
+                Logger.Info($"Internal webserver starting on http://{host}:{port}/");
             }
 
             try {
                 (_listener = new HttpListener { Prefixes = { $"http://{host}:{port}/" } }).Start();
             } catch (Exception e) {
-                Logger.Error("Internal webserver has failed to start");
+                Logger.Error($"Internal webserver has failed to start: {e}");
                 if (e is HttpListenerException { ErrorCode: 5 }) {
                     Logger.Error("Check LiveMap Wiki for possible fixes: https://vs.pl3x.net/livemap-access-denied");
                 }
@@ -69,7 +69,9 @@ public partial class WebServer {
             while (_running) {
                 try {
                     HandleRequest(_listener!.GetContext());
-                } catch (Exception) {
+                } catch (Exception e) {
+                    Logger.Error($"Internal webserver has thrown an exception handling a request: {e}");
+
                     if (_stopped) {
                         Logger.Info("Internal webserver has stopped");
                         if (_reload) {

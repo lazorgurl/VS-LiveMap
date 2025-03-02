@@ -180,8 +180,10 @@ public sealed class RenderTask {
                     BlockPos pos = tl.Pos;
                     BlockPos loc = tl.TargetLocation;
 
+                    translocators.Add(new TranslocatorsLayer.Translocator(
+                        TranslocatorsLayer.GenerateTranslocatorName(pos, loc), pos, loc));
                     // save tl to file
-                    Logger.Debug($"Translocator at {pos} points to {loc}");
+                    Logger.Info($"Translocator at {pos} points to {loc}");
                 });
             }
         });

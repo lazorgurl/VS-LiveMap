@@ -5,7 +5,7 @@ using Point = livemap.data.Point;
 namespace livemap.configuration;
 
 public class Translocators {
-    public bool Enabled { get; set; } = false;
+    public bool Enabled { get; set; } = true;
 
     public int UpdateInterval { get; set; } = 30;
 
@@ -26,5 +26,5 @@ public class Translocators {
 
     public PopupOptions? Popup { get; set; }
 
-    public string? Css { get; set; } = "";
+    public string? Css { get; set; } = ".leaflet-translocators-pane .leaflet-marker-icon{color:#204EA2;filter:drop-shadow(1px 0 0 black) drop-shadow(-1px 0 0 black) drop-shadow(0 1px 0 black) drop-shadow(0 -1px 0 black)} .leaflet-translocators-pane span{position:relative;top:-22px;display:block;text-align:center;color:black;filter: drop-shadow(1px 0 0 #a5b8d9) drop-shadow(-1px 0 0 #a5b8d9) drop-shadow(0 1px 0 #a5b8d9) drop-shadow(0 -1px 0 #a5b8d9)}";
 }

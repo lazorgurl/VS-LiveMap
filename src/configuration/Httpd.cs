@@ -5,6 +5,5 @@ public class Httpd {
 
     public int Port { get; set; } = 8080;
 
-
     public string Host { get; set; } = "localhost";
 }

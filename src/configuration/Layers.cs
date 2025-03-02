@@ -5,6 +5,8 @@ public class Layers {
 
     public Spawn Spawn { get; set; } = new();
 
+    public Settlements Settlements { get; set; } = new();
+
     public Traders Traders { get; set; } = new();
 
     public Translocators Translocators { get; set; } = new();

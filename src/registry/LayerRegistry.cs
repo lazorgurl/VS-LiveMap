@@ -8,6 +8,7 @@ public class LayerRegistry : Registry<Layer> {
     public SpawnLayer? Spawn { get; private set; }
     public TradersLayer? Traders { get; private set; }
     public TranslocatorsLayer? Translocators { get; private set; }
+    public SettlementsLayer? Settlements { get; private set; }
 
     public LayerRegistry() : base("layers") { }
 
@@ -16,6 +17,7 @@ public class LayerRegistry : Registry<Layer> {
         Register(Spawn = new SpawnLayer());
         Register(Traders = new TradersLayer());
         Register(Translocators = new TranslocatorsLayer());
+        Register(Settlements = new SettlementsLayer());
     }
 
     public override void Dispose() {
@@ -23,6 +25,7 @@ public class LayerRegistry : Registry<Layer> {
         Spawn = null;
         Traders = null;
         Translocators = null;
+        Settlements = null;
 
         base.Dispose();
     }
