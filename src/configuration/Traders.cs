@@ -12,8 +12,8 @@ public class Traders {
     public bool DefaultShowLayer { get; set; } = false;
 
     public IconOptions IconOptions { get; set; } = new() {
-        Title = "",
-        Alt = "",
+        Title = "Traders",
+        Alt = "traders",
         IconUrl = "#svg-trader",
         IconSize = new Point(16, 16),
         Pane = "traders"
@@ -26,5 +26,6 @@ public class Traders {
 
     public PopupOptions? Popup { get; set; }
 
-    public string? Css { get; set; } = ".leaflet-traders-pane .leaflet-marker-icon{color:#204EA2;filter:drop-shadow(1px 0 0 black) drop-shadow(-1px 0 0 black) drop-shadow(0 1px 0 black) drop-shadow(0 -1px 0 black)} .leaflet-traders-pane span{position:relative;top:-22px;display:block;text-align:center;color:black;filter: drop-shadow(1px 0 0 #a5b8d9) drop-shadow(-1px 0 0 #a5b8d9) drop-shadow(0 1px 0 #a5b8d9) drop-shadow(0 -1px 0 #a5b8d9)}";
+    public string? Css { get; set; } = ".leaflet-traders-pane {color:#FF7518;filter:drop-shadow(1px 0 0 black) drop-shadow(-1px 0 0 black) drop-shadow(0 1px 0 black) drop-shadow(0 -1px 0 black)}";
 }
+

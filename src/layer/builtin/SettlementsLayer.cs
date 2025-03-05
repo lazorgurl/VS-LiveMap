@@ -27,7 +27,7 @@ public class SettlementsLayer : Layer {
                 if (popup?.Content != null) {
                     popup.Content = string.Format(popup.Content, meta.Name, meta.Description);
                 }
-                list.Add(new Icon($"settlement:{meta.Name}{meta.Location}", meta.Location.ToPoint(), Config.IconOptions) {
+                list.Add(new Icon($"settlement:{meta.Name}{meta.Location}", meta.Location.ToPoint().Add(LiveMap.Api.Sapi.World.DefaultSpawnPosition.ToPoint()), Config.IconOptions) {
                     Tooltip = tooltip,
                     Popup = popup
                 });
@@ -37,6 +37,8 @@ public class SettlementsLayer : Layer {
     }
 
     public override string Filename => Path.Combine(Files.MarkerDir, $"{Id}.json");
+
+    public override string? Css => Config.Css;
 
     private static Settlements Config => LiveMap.Api.Config.Layers.Settlements;
 

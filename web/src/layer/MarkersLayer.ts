@@ -127,7 +127,7 @@ export class MarkersLayer extends L.LayerGroup {
 
         // insert any custom css
         if (layerJson.css) {
-            document.head.insertAdjacentHTML('beforeend', `<style id='${this.id}'>${layerJson.css}</style>`);
+            document.head.insertAdjacentHTML('beforeend', `<style id='${this._label}'>${layerJson.css}</style>`);
         }
 
         // create and add the cluster to this layer

@@ -12,10 +12,11 @@ public class Spawn {
     public bool DefaultShowLayer { get; set; } = true;
 
     public IconOptions IconOptions { get; set; } = new() {
-        Title = "",
-        Alt = "Spawn",
-        IconUrl = "#svg-house",
-        IconSize = new Point(16, 16)
+        Title = "Spawn",
+        Alt = "spawn",
+        IconUrl = "#svg-star1",
+        IconSize = new Point(16, 16),
+        Pane = "spawn"
     };
 
     public TooltipOptions? Tooltip { get; set; } = new() {
@@ -25,5 +26,5 @@ public class Spawn {
 
     public PopupOptions? Popup { get; set; }
 
-    public string? Css { get; set; }
+    public string? Css { get; set; } = ".leaflet-spawn-pane .leaflet-marker-icon{color:#FFED29;filter:drop-shadow(1px 0 0 black) drop-shadow(-1px 0 0 black) drop-shadow(0 1px 0 black) drop-shadow(0 -1px 0 black)}";
 }

@@ -14,6 +14,8 @@ public class SpawnLayer : Layer {
 
     public override bool? Hidden => !Config.DefaultShowLayer;
 
+    public override string? Css => Config.Css;
+
     public override List<Marker> Markers {
         get {
             TooltipOptions? tooltip = Config.Tooltip?.DeepCopy();

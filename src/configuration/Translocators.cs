@@ -12,8 +12,8 @@ public class Translocators {
     public bool DefaultShowLayer { get; set; } = false;
 
     public IconOptions IconOptions { get; set; } = new() {
-        Title = "",
-        Alt = "",
+        Title = "Translocators",
+        Alt = "translocators",
         IconUrl = "#svg-spiral",
         IconSize = new Point(16, 16),
         Pane = "translocators"
@@ -21,10 +21,10 @@ public class Translocators {
 
     public TooltipOptions? Tooltip { get; set; } = new() {
         Direction = "top",
-        Content = "{0}<br>{1}"
+        Content = "{0}"
     };
 
     public PopupOptions? Popup { get; set; }
 
-    public string? Css { get; set; } = ".leaflet-translocators-pane .leaflet-marker-icon{color:#204EA2;filter:drop-shadow(1px 0 0 black) drop-shadow(-1px 0 0 black) drop-shadow(0 1px 0 black) drop-shadow(0 -1px 0 black)} .leaflet-translocators-pane span{position:relative;top:-22px;display:block;text-align:center;color:black;filter: drop-shadow(1px 0 0 #a5b8d9) drop-shadow(-1px 0 0 #a5b8d9) drop-shadow(0 1px 0 #a5b8d9) drop-shadow(0 -1px 0 #a5b8d9)}";
+    public string? Css { get; set; } = ".leaflet-translocators-pane {color:##00FFF0;filter:drop-shadow(1px 0 0 black) drop-shadow(-1px 0 0 black) drop-shadow(0 1px 0 black) drop-shadow(0 -1px 0 black)}";
 }

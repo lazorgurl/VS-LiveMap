@@ -2,6 +2,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,12 +29,12 @@ public class TranslocatorsLayer : Layer {
                 translocators.Foreach(translocator => {
                     TooltipOptions? tooltip = Config.Tooltip?.DeepCopy();
                     if (tooltip?.Content != null) {
-                        tooltip.Content = string.Format(tooltip.Content, translocator.Name, $"to {translocator.To.ToPoint().X}");
+                        tooltip.Content = string.Format(tooltip.Content, translocator.Name);
                     }
 
                     PopupOptions? popup = Config.Popup?.DeepCopy();
                     if (popup?.Content != null) {
-                        popup.Content = string.Format(popup.Content, translocator.Name, $"to {translocator.To.ToPoint()}");
+                        popup.Content = string.Format(popup.Content, translocator.Name);
                     }
 
                     list.Add(new Icon($"translocator:{translocator.Pos}", translocator.Pos.ToPoint(), Config.IconOptions) {
@@ -79,7 +80,7 @@ public class TranslocatorsLayer : Layer {
 
     public TranslocatorsLayer() : base("translocators", "lang.translocators".ToLang()) {
         _knownFile = Path.Combine(Files.JsonDir, $"{Id}.json");
-        ConcurrentDictionary<ulong, HashSet<Translocator>>? translocators = null;
+        ConcurrentDictionary<ulong,HashSet<Translocator>>? translocators = null;
         if (File.Exists(_knownFile)) {
             try {
                 string json = File.ReadAllText(_knownFile);
@@ -94,11 +95,25 @@ public class TranslocatorsLayer : Layer {
     }
 
     public void SetTranslocators(ulong chunkIndex, HashSet<Translocator> translocators) {
-        if (translocators.Count == 0) {
+        Dictionary<BlockPos, Translocator> knownTranslocatorsByPosition = _knownTranslocators[chunkIndex].ToDictionary(tl => tl.Pos, tl => tl);
+
+        translocators.Foreach(tl => {
+            if (!knownTranslocatorsByPosition.Keys.Contains(tl.Pos)) {
+                if (!_knownTranslocators.Keys.Contains(chunkIndex)) {
+                    _knownTranslocators[chunkIndex] = new HashSet<Translocator>();
+                }
+                _knownTranslocators[chunkIndex].Add(tl);
+            }
+        });
+
+        knownTranslocatorsByPosition.Values.Foreach(ktl => {
+            if (!translocators.Contains(ktl)) {
+                _knownTranslocators[chunkIndex].Remove(ktl);
+            }
+        });
+
+        if (_knownTranslocators[chunkIndex].Count == 0) {
             _knownTranslocators.Remove(chunkIndex);
-        }
-        else {
-            _knownTranslocators[chunkIndex] = translocators;
         }
 
         _dirty = true;
