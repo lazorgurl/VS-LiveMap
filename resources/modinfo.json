@@ -4,7 +4,7 @@
   "modid": "livemap",
   "version": "{version}",
   "description": "{description}",
-  "authors": [ "BillyGalbreath" ],
+  "authors": [ "BillyGalbreath", "lazorgurl" ],
   "requiredOnClient": false,
   "dependencies": {
     "game": "1.19.0"

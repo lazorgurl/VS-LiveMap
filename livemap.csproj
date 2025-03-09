@@ -4,7 +4,7 @@
         <TargetFramework>net7.0</TargetFramework>
         <PackageId>livemap</PackageId>
         <Title>LiveMap</Title>
-        <Ver>0.0.13</Ver>
+        <Ver>0.0.13-vinterra-2</Ver>
         <Version Condition="'$(BUILD_NUMBER)' != ''">$(Ver)-b$(BUILD_NUMBER)</Version>
         <Version Condition="'$(BUILD_NUMBER)' == ''">$(Ver)-SNAPSHOT</Version>
         <Authors>BillyGalbreath</Authors>

@@ -95,7 +95,9 @@ public class TranslocatorsLayer : Layer {
     }
 
     public void SetTranslocators(ulong chunkIndex, HashSet<Translocator> translocators) {
-        Dictionary<BlockPos, Translocator> knownTranslocatorsByPosition = _knownTranslocators[chunkIndex].ToDictionary(tl => tl.Pos, tl => tl);
+
+        HashSet<Translocator> chunkTranslocators = _knownTranslocators.Keys.Contains(chunkIndex) ? _knownTranslocators[chunkIndex] : new HashSet<Translocator>();
+        Dictionary<BlockPos, Translocator> knownTranslocatorsByPosition = chunkTranslocators.ToDictionary(tl => tl.Pos, tl => tl);
 
         translocators.Foreach(tl => {
             if (!knownTranslocatorsByPosition.Keys.Contains(tl.Pos)) {
